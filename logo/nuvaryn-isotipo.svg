@@ -1,0 +1,15 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nuvaryn">
+  <defs>
+    <linearGradient id="nL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2D84FF"/><stop offset="1" stop-color="#0942C2"/></linearGradient>
+    <linearGradient id="nR" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2A88FF"/><stop offset="1" stop-color="#86D4FF"/></linearGradient>
+    <linearGradient id="nD" gradientUnits="userSpaceOnUse" x1="45" y1="70" x2="255" y2="235"><stop offset="0" stop-color="#0B53DB"/><stop offset=".55" stop-color="#2A84F8"/><stop offset="1" stop-color="#6CC6FF"/></linearGradient>
+    <linearGradient id="nH" gradientUnits="userSpaceOnUse" x1="58" y1="52" x2="268" y2="217"><stop offset="0" stop-color="#fff" stop-opacity=".05"/><stop offset=".6" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <clipPath id="nC"><path d="M10 285 V70 A35 35 0 0 1 80 70 V285 Z"/><path d="M220 18 L290 42 V235 A35 35 0 0 1 220 235 Z"/></clipPath>
+    <filter id="nS" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+  </defs>
+  <path class="m-l" d="M10 285 V70 A35 35 0 0 1 80 70 V285 Z" fill="url(#nL)"/>
+  <path class="m-r" d="M220 18 L290 42 V235 A35 35 0 0 1 220 235 Z" fill="url(#nR)"/>
+  <g clip-path="url(#nC)"><line class="m-s" x1="45" y1="70" x2="255" y2="235" stroke="#041A55" stroke-opacity=".55" stroke-width="84" stroke-linecap="round" filter="url(#nS)"/></g>
+  <line class="m-d" x1="45" y1="70" x2="255" y2="235" stroke="url(#nD)" stroke-width="70" stroke-linecap="round" pathLength="1"/>
+  <line class="m-h" x1="58.6" y1="52.7" x2="268.6" y2="217.7" stroke="url(#nH)" stroke-width="8" stroke-linecap="round"/>
+</svg>

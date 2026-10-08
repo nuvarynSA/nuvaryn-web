@@ -1,0 +1,8 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# local tooling / screenshots
+.shots/
+.playwright-mcp/

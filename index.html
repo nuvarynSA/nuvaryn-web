@@ -1,0 +1,935 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuvaryn S.A.</title>
+<meta name="description" content="Nuvaryn S.A. — Sistemas ERP y CRM para la industria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: brand-white ground, glass panels echoing the logo's tower; hero = thesis + live ERP glass; flow strip; numbered method; team; contact */
+:root{
+  --bg:#F5F8FE; --bg-2:#EAF1FD; --surface:#FFFFFF; --ink:#0A1F4D; --ink-2:#1B2F5E; --muted:#56658A;
+  --line:rgba(10,31,77,.10); --blue:#1466EF; --blue-2:#46A3FF; --cyan:#7FD0FF;
+  --glass:rgba(255,255,255,.62); --glass-line:rgba(20,102,239,.16); --grid:rgba(20,102,239,.07);
+  --shadow:0 30px 80px -30px rgba(10,40,110,.35); --ok:#13A26B; --warn:#E08A00;
+  --f-display:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:18px; --gut:clamp(16px,4vw,48px); --max:1200px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#050B1C; --bg-2:#0A1430; --surface:#0C1734; --ink:#EAF1FF; --ink-2:#C9D7F5; --muted:#93A3C6;
+  --line:rgba(150,185,255,.12); --blue:#3A8BFF; --blue-2:#6DB8FF; --cyan:#8FD8FF;
+  --glass:rgba(14,30,70,.55); --glass-line:rgba(124,194,255,.18); --grid:rgba(124,194,255,.06);
+  --shadow:0 30px 80px -30px rgba(0,0,0,.7); --ok:#2BD08F; --warn:#FFB23E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#050B1C; --bg-2:#0A1430; --surface:#0C1734; --ink:#EAF1FF; --ink-2:#C9D7F5; --muted:#93A3C6;
+  --line:rgba(150,185,255,.12); --blue:#3A8BFF; --blue-2:#6DB8FF; --cyan:#8FD8FF;
+  --glass:rgba(14,30,70,.55); --glass-line:rgba(124,194,255,.18); --grid:rgba(124,194,255,.06);
+  --shadow:0 30px 80px -30px rgba(0,0,0,.7); --ok:#2BD08F; --warn:#FFB23E; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue-2);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:2px}
+.grad{background:linear-gradient(100deg,var(--blue) 0%,var(--blue-2) 45%,var(--cyan) 60%,var(--blue) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:-220% 0}}
+
+/* ---------- Intro ---------- */
+#intro{position:fixed;inset:0;z-index:100;background:#030919;display:grid;place-items:center;overflow:hidden;color:#fff}
+#intro .halo{position:absolute;width:70vmax;height:70vmax;border-radius:50%;background:radial-gradient(circle,rgba(40,130,255,.35),rgba(40,130,255,0) 60%);opacity:0}
+#intro .lines{position:absolute;inset:0;background-image:linear-gradient(rgba(90,160,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(90,160,255,.07) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(circle at 50% 50%,#000,transparent 65%);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 65%)}
+.intro-lockup{position:relative;display:flex;align-items:center;gap:clamp(14px,3vw,34px);padding-inline:16px;flex-wrap:wrap;justify-content:center}
+.intro-lockup .nmark{width:clamp(84px,14vw,150px);height:auto;filter:drop-shadow(0 20px 50px rgba(30,120,255,.45))}
+.intro-word{display:flex;flex-direction:column;gap:clamp(8px,1.4vw,16px)}
+.intro-name{font-family:var(--f-display);font-weight:800;font-size:clamp(48px,10vw,124px);line-height:.9;letter-spacing:-.035em;display:flex;align-items:baseline;gap:.18em}
+.intro-name .chars{display:inline-flex;overflow:hidden;padding-bottom:.08em}
+.intro-name .chars span{display:inline-block}
+.intro-name .sa{font-weight:600;color:#3E95FF;font-size:.62em;letter-spacing:0}
+.intro-tag{font-family:var(--f-display);font-weight:500;font-size:clamp(10px,1.35vw,15px);letter-spacing:.45em;color:#9DB9EA;text-transform:uppercase;padding-left:.2em}
+.intro-sweep{position:absolute;inset:-20% auto -20% -30%;width:22%;background:linear-gradient(90deg,transparent,rgba(160,210,255,.28),transparent);transform:skewX(-18deg);opacity:0;pointer-events:none}
+#skip{position:absolute;right:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));background:transparent;border:1px solid rgba(160,200,255,.3);color:#BFD3F5;font:500 12px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;border-radius:999px;cursor:pointer}
+#skip:hover{border-color:#5EA8FF;color:#fff}
+.intro-bar{position:absolute;left:0;bottom:0;height:2px;width:100%;background:linear-gradient(90deg,#1466EF,#7FD0FF);transform-origin:left;transform:scaleX(0)}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background .4s,box-shadow .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.scrolled{background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand .nmark{width:36px;height:36px}
+.brand b{font-family:var(--f-display);font-weight:800;font-size:22px;letter-spacing:-.03em;color:var(--ink)}
+.brand i{font-style:normal;font-family:var(--f-display);font-weight:600;font-size:15px;color:var(--blue);margin-left:4px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{text-decoration:none;font-weight:600;font-size:14px;color:var(--ink-2);position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--glass)}
+.lang button{border:0;background:transparent;color:var(--muted);font:500 11px var(--f-mono);letter-spacing:.08em;padding:6px 9px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.theme{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--glass)}
+.theme button{border:0;background:transparent;color:var(--muted);display:grid;place-items:center;padding:6px 9px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s}
+.theme button svg{width:15px;height:15px}
+.theme button:hover{color:var(--ink)}
+.theme button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.btn{--mx:0px;--my:0px;display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:700;font-size:15px;padding:14px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transform:translate(var(--mx),var(--my));transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .3s,background .3s}
+.btn-primary{background:linear-gradient(135deg,#0F5BE6,#2F8CFF 60%,#5DB8FF);color:#fff;box-shadow:0 14px 34px -12px rgba(20,102,239,.65)}
+.btn-primary:hover{box-shadow:0 20px 44px -12px rgba(20,102,239,.8)}
+.btn-ghost{background:var(--glass);color:var(--ink);border:1px solid var(--glass-line);backdrop-filter:blur(10px)}
+.btn svg{width:16px;height:16px;transition:transform .3s}
+.btn:hover svg{transform:translateX(3px)}
+.nav .btn{padding:10px 18px;font-size:13px}
+.menu-btn{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--ink);cursor:pointer}
+@media (max-width:920px){
+  .nav-links{position:fixed;inset:64px 12px auto 12px;flex-direction:column;align-items:flex-start;gap:4px;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);transform:translateY(-12px);opacity:0;pointer-events:none;transition:.3s}
+  .nav-links a{padding:10px 8px;width:100%;font-size:16px}
+  .nav-links.open{transform:none;opacity:1;pointer-events:auto}
+  .menu-btn{display:grid;place-items:center}
+  .nav .btn{display:none}
+}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding-block:clamp(36px,7vw,90px) clamp(60px,9vw,120px);overflow:hidden;isolation:isolate}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.9}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(180deg,#000 30%,transparent);-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent)}
+.hero::after{content:"";position:absolute;z-index:-2;width:60vw;height:60vw;right:-18vw;top:-20vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--blue-2) 30%,transparent),transparent 65%);filter:blur(10px)}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
+.hero-copy{min-width:0;display:flex;flex-direction:column;gap:24px}
+.hero h1{font-size:clamp(40px,6.2vw,80px);font-weight:800;letter-spacing:-.04em}
+.hero h1 em{font-style:normal}
+.hero .sub{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:56ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.hero-chips span{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--glass)}
+.hero-chips span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 25%,transparent)}
+@media (max-width:920px){.hero-grid{grid-template-columns:1fr}}
+
+/* glass ERP visual */
+.stage{position:relative;perspective:1400px;min-width:0}
+.tower{position:absolute;border-radius:28px;background:linear-gradient(160deg,color-mix(in srgb,var(--cyan) 40%,transparent),color-mix(in srgb,var(--blue) 10%,transparent));border:1px solid var(--glass-line);backdrop-filter:blur(6px)}
+.tower.t1{width:42%;height:118%;right:-6%;top:-12%;transform:skewY(-6deg);opacity:.5}
+.tower.t2{width:30%;height:100%;right:22%;top:-4%;transform:skewY(-6deg);opacity:.35}
+.tilt{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);position:relative}
+.dash{position:relative;background:var(--glass);border:1px solid var(--glass-line);border-radius:22px;box-shadow:var(--shadow);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);padding:16px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.dash::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.35),transparent 35%);pointer-events:none;opacity:.6}
+.dash-top{display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.dots i:nth-child(1){background:#FF6159}.dots i:nth-child(2){background:#FFBD2E}.dots i:nth-child(3){background:#28C940}
+.live{display:inline-flex;align-items:center;gap:6px;color:var(--ok)}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent)}100%{box-shadow:0 0 0 9px transparent}}
+.kpis{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;min-width:0}
+.kpi small{display:block;font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi b{font-family:var(--f-display);font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.kpi .u{font-size:12px;color:var(--muted);font-weight:600;margin-left:3px}
+.gauge{display:flex;align-items:center;gap:10px}
+.gauge svg{width:52px;height:52px;flex:none;transform:rotate(-90deg)}
+.gauge .trk{stroke:var(--line)}
+.gauge .val{stroke:url(#gG);stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
+.warn{color:var(--warn)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.panel-h{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;font-weight:700;color:var(--ink-2);margin-bottom:10px}
+.panel-h span{font-family:var(--f-mono);font-weight:400;color:var(--muted);font-size:11px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:84px;border-bottom:1px solid var(--line);background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 28px}
+.bars i{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--blue-2),var(--blue));opacity:.55;height:10%;transition:height .8s cubic-bezier(.2,.8,.2,1)}
+.bars i:last-child{opacity:1;box-shadow:0 0 18px color-mix(in srgb,var(--blue-2) 60%,transparent)}
+.ops{display:flex;flex-direction:column;gap:9px}
+.op{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;font-size:12px}
+.op code{font-family:var(--f-mono);font-size:11px;color:var(--blue);background:color-mix(in srgb,var(--blue) 10%,transparent);padding:2px 6px;border-radius:6px}
+.op .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.op .pc{font-family:var(--f-mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.op .pb{grid-column:1/-1;height:5px;background:var(--line);border-radius:5px;overflow:hidden}
+.op .pb i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:5px;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.crm-card{position:absolute;left:-7%;bottom:-9%;width:min(270px,62%);background:var(--glass);border:1px solid var(--glass-line);border-radius:16px;padding:14px;box-shadow:var(--shadow);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);transform:translateZ(60px);display:flex;flex-direction:column;gap:8px;animation:float 6s ease-in-out infinite}
+@keyframes float{50%{translate:0 -10px}}
+.crm-card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px}
+.crm-card .t{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.crm-card b{font-family:var(--f-display);font-size:20px;font-variant-numeric:tabular-nums}
+.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.stages{display:flex;gap:4px}.stages i{flex:1;height:5px;border-radius:4px;background:var(--line)}.stages i.on{background:linear-gradient(90deg,var(--blue),var(--blue-2))}
+.example{position:absolute;right:14px;bottom:-30px;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+@media (max-width:560px){.kpis{grid-template-columns:1fr 1fr}.kpis .kpi:first-child{grid-column:1/-1}.crm-card{position:relative;left:auto;bottom:auto;width:auto;margin-top:12px;transform:none}.tower{display:none}.example{position:static;display:block;margin-top:8px}}
+
+/* ---------- Marquee ---------- */
+.marquee{border-block:1px solid var(--line);background:var(--surface);padding-block:18px;overflow:hidden;position:relative}
+.marquee-label{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:12px}
+.track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,2.6vw,30px);color:var(--ink);padding-inline:26px;display:inline-flex;align-items:center;gap:26px;white-space:nowrap;letter-spacing:-.02em}
+.track span::after{content:"";width:12px;height:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));transform:rotate(45deg);border-radius:3px;opacity:.7}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---------- Sections ---------- */
+section{padding-block:clamp(70px,10vw,130px)}
+.sec-head{display:flex;flex-direction:column;gap:16px;max-width:760px;margin-bottom:clamp(36px,5vw,60px)}
+.sec-head h2{font-size:clamp(32px,4.6vw,56px);font-weight:800}
+.sec-head p{color:var(--muted);font-size:18px;max-width:62ch}
+
+.sol-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:820px){.sol-grid{grid-template-columns:1fr}}
+.spot{--x:50%;--y:50%;position:relative;overflow:hidden}
+.spot::after{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--x) var(--y),color-mix(in srgb,var(--blue-2) 16%,transparent),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.spot:hover::after{opacity:1}
+.sol{background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:clamp(24px,3.4vw,40px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.sol .tag{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:12px}
+.sol .ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#0F5BE6,#5DB8FF);color:#fff;box-shadow:0 12px 26px -10px rgba(20,102,239,.7)}
+.sol .ico svg{width:26px;height:26px}
+.sol h3{font-size:clamp(24px,2.6vw,32px);font-weight:800}
+.sol p{color:var(--muted)}
+.mods{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:480px){.mods{grid-template-columns:1fr}}
+.mods li{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:14.5px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);transition:border-color .3s,transform .3s}
+.mods li:hover{border-color:var(--blue);transform:translateY(-2px)}
+.mods li code{font-family:var(--f-mono);font-size:10.5px;color:var(--blue);padding-top:3px;flex:none}
+
+/* flow */
+.flow-sec{background:var(--bg-2);position:relative;overflow:hidden}
+.flow{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.flow::before{content:"";position:absolute;left:4%;right:4%;top:34px;height:2px;background:var(--line)}
+.flow .beam{position:absolute;left:4%;top:33px;height:4px;width:18%;border-radius:4px;background:linear-gradient(90deg,transparent,var(--blue-2),var(--cyan),transparent);filter:blur(.5px);animation:beam 4.5s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes beam{0%{left:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:82%;opacity:0}}
+.step{position:relative;display:flex;flex-direction:column;gap:10px;min-width:0}
+.node{width:68px;height:68px;border-radius:20px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--glass-line);box-shadow:0 12px 30px -16px rgba(20,102,239,.6);color:var(--blue);position:relative;z-index:1;transition:transform .35s,background .35s,color .35s}
+.node svg{width:28px;height:28px}
+.step:hover .node{transform:translateY(-4px) rotate(-4deg);background:var(--blue);color:#fff}
+.step .k{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.1em}
+.step h3{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.step p{font-size:14px;color:var(--muted)}
+.step .sys{align-self:flex-start;font-family:var(--f-mono);font-size:10.5px;padding:2px 8px;border-radius:6px;border:1px solid var(--glass-line);color:var(--blue)}
+@media (max-width:980px){
+  .flow{grid-template-columns:1fr;gap:22px;padding-left:4px}
+  .flow::before{left:37px;right:auto;top:20px;bottom:20px;width:2px;height:auto}
+  .flow .beam{left:36px;top:0;width:4px;height:16%;background:linear-gradient(180deg,transparent,var(--blue-2),var(--cyan),transparent);animation:beamv 4.5s cubic-bezier(.6,0,.4,1) infinite}
+  .step{display:grid;grid-template-columns:68px 1fr;column-gap:18px;row-gap:4px}
+  .step .node{grid-row:1/span 4}
+}
+@keyframes beamv{0%{top:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:84%;opacity:0}}
+
+/* why */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media (max-width:980px){.why-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.why-grid{grid-template-columns:1fr}}
+.why{padding:26px 22px;border-radius:20px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;gap:12px;min-width:0;transition:transform .4s,box-shadow .4s}
+.why:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.why .wi{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:var(--blue);background:color-mix(in srgb,var(--blue) 10%,transparent)}
+.why .wi svg{width:22px;height:22px}
+.why h3{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.why p{color:var(--muted);font-size:15px}
+.integr{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.integr span{font-family:var(--f-mono);font-size:12px;padding:7px 12px;border-radius:999px;border:1px dashed var(--glass-line);color:var(--ink-2)}
+
+/* process */
+.proc{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:20px;counter-reset:p}
+.proc-line{position:absolute;left:0;right:0;top:26px;height:2px;background:var(--line)}
+.proc-line i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));transform-origin:left;transform:scaleX(.15)}
+.pstep{position:relative;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pnum{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:18px;color:#fff;background:linear-gradient(135deg,#0F5BE6,#5DB8FF);box-shadow:0 0 0 7px var(--bg),0 10px 24px -8px rgba(20,102,239,.7);position:relative;z-index:1}
+.pstep h3{font-size:19px;font-weight:700;margin-top:8px}
+.pstep p{color:var(--muted);font-size:15px}
+@media (max-width:900px){.proc{grid-template-columns:1fr}.proc-line{left:26px;right:auto;top:0;bottom:0;width:2px;height:auto}.proc-line i{transform-origin:top;transform:scaleY(.15)}.pstep{display:grid;grid-template-columns:54px 1fr;column-gap:20px}.pstep .pnum{grid-row:1/span 2}.pstep h3{margin-top:12px}}
+
+/* team */
+.team-sec{background:var(--bg-2)}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px}
+@media (max-width:640px){.team{grid-template-columns:1fr}}
+.member{border-radius:26px;padding:28px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:18px;min-width:0;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.avatar{width:92px;height:92px;border-radius:26px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:32px;color:#fff;letter-spacing:-.02em;background:linear-gradient(135deg,#0A47C9,#2F8CFF 55%,#7FD0FF);box-shadow:0 18px 36px -14px rgba(20,102,239,.8);position:relative;overflow:hidden}
+.avatar::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s}
+.member:hover .avatar::after{transform:translateX(120%)}
+.member h3{font-size:24px;font-weight:800}
+.member .role{font-family:var(--f-mono);font-size:12.5px;color:var(--blue);letter-spacing:.04em}
+.member .sk{display:flex;flex-wrap:wrap;gap:6px}
+.member .sk span{font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--ink-2)}
+.team-wrap{margin-top:clamp(36px,5vw,56px)}
+.team-h{font-size:clamp(20px,2.4vw,26px);font-weight:800;margin-bottom:22px}
+
+/* projects */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:960px){.proj-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.proj-grid{grid-template-columns:1fr}}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px 24px;display:flex;flex-direction:column;gap:14px;min-width:0;transition:transform .4s,box-shadow .4s,border-color .4s}
+.proj:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--glass-line)}
+.proj-top{display:flex;align-items:center;justify-content:space-between}
+.proj-ico{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;color:var(--blue);background:color-mix(in srgb,var(--blue) 10%,transparent)}
+.proj-ico svg{width:24px;height:24px}
+.proj-git{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);color:var(--ink-2);transition:color .25s,border-color .25s,background .25s}
+.proj-git:hover{color:#fff;background:var(--ink);border-color:var(--ink)}
+.proj-git svg{width:19px;height:19px}
+.proj h3{font-size:21px;font-weight:800;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.proj h3 .alias{font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--blue);letter-spacing:.04em}
+.proj p{color:var(--muted);font-size:14.5px;flex:1}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px}
+.proj-tags span{font-family:var(--f-mono);font-size:11px;padding:4px 9px;border-radius:7px;background:var(--bg);border:1px solid var(--line);color:var(--ink-2)}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:12px;max-width:820px}
+.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .3s}
+.faq-item[open]{border-color:var(--glass-line)}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:var(--f-display);font-weight:700;font-size:17px;color:var(--ink)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"";width:11px;height:11px;border-right:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(45deg);transition:transform .3s;flex:none;margin-top:-5px}
+.faq-item[open] summary::after{transform:rotate(-135deg);margin-top:3px}
+.faq-a{padding:0 22px 20px;color:var(--muted);font-size:15px;max-width:70ch}
+
+/* about blocks */
+.sub-h{font-size:clamp(20px,2.4vw,26px);font-weight:800;margin:clamp(34px,5vw,52px) 0 22px}
+.why-grid-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.why-grid-3{grid-template-columns:1fr}}
+.approach{list-style:none;margin:0;padding:0;display:grid;gap:14px;max-width:780px}
+.approach li{display:flex;gap:13px;align-items:flex-start;font-size:15.5px;color:var(--ink-2)}
+.approach li svg{width:21px;height:21px;color:var(--blue);flex:none;margin-top:1px}
+
+/* contact info */
+.contact-left{display:flex;flex-direction:column;gap:clamp(26px,3.5vw,36px)}
+.contact-info{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.contact-info li{display:flex;gap:14px;align-items:flex-start}
+.ci-ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:var(--blue);background:color-mix(in srgb,var(--blue) 10%,transparent);flex:none}
+.ci-ico svg{width:20px;height:20px}
+.contact-info .ci-l{display:block;font-size:12px;font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.contact-info a{font-weight:600;color:var(--ink);text-decoration:none;transition:color .2s}
+.contact-info a:hover{color:var(--blue)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,70px);align-items:start}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+.contact .sec-head{margin-bottom:0}
+.form{background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:16px;box-shadow:var(--shadow);min-width:0}
+.form .full{grid-column:1/-1}
+@media (max-width:560px){.form{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:13px;font-weight:700;color:var(--ink-2)}
+.field input,.field select,.field textarea{font:500 15px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%;transition:border-color .25s,box-shadow .25s}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px color-mix(in srgb,var(--blue) 18%,transparent)}
+.done{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.done[hidden]{display:none}
+.done code{font-family:var(--f-mono);user-select:all;color:var(--blue)}
+.done button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 10px;font:600 12px var(--f-body);cursor:pointer}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:44px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+footer .tagline{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.38em;text-transform:uppercase;color:var(--muted)}
+footer small{color:var(--muted);font-size:13px}
+
+/* big CTA band */
+.band{position:relative;margin-top:clamp(50px,7vw,90px);border-radius:30px;padding:clamp(30px,5vw,60px);overflow:hidden;color:#fff;background:linear-gradient(125deg,#06215F,#0F5BE6 55%,#4FB0FF);display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.band h3{font-size:clamp(26px,3.4vw,42px);font-weight:800;max-width:20ch}
+.band .bmark{position:absolute;right:-40px;top:-60px;width:320px;opacity:.16;transform:rotate(-8deg)}
+.band .btn{background:#fff;color:#0A2A7A;position:relative}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<!-- ============ INTRO ============ -->
+<div id="intro" aria-hidden="true">
+  <div class="lines"></div>
+  <div class="halo"></div>
+  <div class="intro-lockup">
+    <span class="nmark-slot" data-id="iM" data-intro="1"></span>
+    <div class="intro-word">
+      <div class="intro-name"><span class="chars"><span>N</span><span>u</span><span>v</span><span>a</span><span>r</span><span>y</span><span>n</span></span><span class="chars"><span class="sa">S.A.</span></span></div>
+      <div class="intro-tag" data-i18n="tagline">Tecnología que impulsa el mañana</div>
+    </div>
+  </div>
+  <div class="intro-sweep"></div>
+  <div class="intro-bar"></div>
+  <button id="skip" type="button" data-i18n="skip">Saltar intro</button>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Nuvaryn S.A."><span class="nmark-slot" data-id="nM"></span><span><b>Nuvaryn</b><i>S.A.</i></span></a>
+    <nav class="nav-links" id="links">
+      <a href="#top" data-i18n="nav.home">Inicio</a>
+      <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
+      <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+      <a href="#preguntas" data-i18n="nav.faq">Preguntas</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button>
+      </div>
+      <div class="theme" role="group" aria-label="Tema / Theme">
+        <button type="button" data-set-theme="light" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2 12h2.5M19.5 12H22M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg></button><button type="button" data-set-theme="dark" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5z"/></svg></button>
+      </div>
+      <a class="btn btn-primary mag" href="#contacto" data-i18n="nav.cta">Contacto</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow h-in" data-i18n="hero.eyebrow">ERP · CRM · Software industrial</span>
+      <h1 class="h-in" data-i18n-html="hero.title">Software que entiende <em class="grad">tu planta</em>.</h1>
+      <p class="sub h-in" data-i18n="hero.sub">Diseñamos e implementamos sistemas ERP y CRM para empresas industriales.</p>
+      <div class="hero-ctas h-in">
+        <a class="btn btn-primary mag" href="#contacto"><span data-i18n="hero.cta1">Agendar una demo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost mag" href="#proyectos" data-i18n="hero.cta2">Ver proyectos</a>
+      </div>
+      <div class="hero-chips h-in"><span data-i18n="chip1">A medida</span><span data-i18n="chip2">Implementación en planta</span><span data-i18n="chip3">Soporte directo</span></div>
+    </div>
+
+    <div class="stage h-vis" id="stage">
+      <div class="tower t1"></div><div class="tower t2"></div>
+      <div class="tilt" id="tilt">
+        <div class="dash">
+          <div class="dash-top"><div class="dots"><i></i><i></i><i></i></div><span data-i18n="dash.title">Nuvaryn ERP · Planta 1</span><span class="live">LIVE</span></div>
+          <div class="kpis">
+            <div class="kpi gauge">
+              <svg viewBox="0 0 52 52"><defs><linearGradient id="gG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1466EF"/><stop offset="1" stop-color="#7FD0FF"/></linearGradient></defs><circle class="trk" cx="26" cy="26" r="21" fill="none" stroke-width="6"/><circle class="val" id="gVal" cx="26" cy="26" r="21" fill="none" stroke-width="6" stroke-dasharray="131.95" stroke-dashoffset="131.95"/></svg>
+              <div style="min-width:0"><small data-i18n="dash.oee">OEE del turno</small><b id="oee">0.0</b><span class="u">%</span></div>
+            </div>
+            <div class="kpi"><small data-i18n="dash.orders">Órdenes en curso</small><b id="ord">0</b></div>
+            <div class="kpi"><small data-i18n="dash.stock">Stock crítico</small><b class="warn" id="stk">0</b><span class="u">SKU</span></div>
+          </div>
+          <div class="panel">
+            <div class="panel-h"><span style="font:inherit;color:inherit" data-i18n="dash.prod">Producción por hora</span><span id="lastU">— u/h</span></div>
+            <div class="bars" id="bars"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-h"><span style="font:inherit;color:inherit" data-i18n="dash.ops">Órdenes de producción</span><span>3 / 37</span></div>
+            <div class="ops">
+              <div class="op"><code>OP-2418</code><span class="nm" data-i18n="op1">Bridas Ø120 mm · 640 u</span><span class="pc" data-p="72">0%</span><span class="pb"><i></i></span></div>
+              <div class="op"><code>OP-2421</code><span class="nm" data-i18n="op2">Eje SAE 1045 · 1.200 u</span><span class="pc" data-p="45">0%</span><span class="pb"><i></i></span></div>
+              <div class="op"><code>OP-2425</code><span class="nm" data-i18n="op3">Tapa inyectada PP · 8.000 u</span><span class="pc" data-p="18">0%</span><span class="pb"><i></i></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="crm-card">
+          <div class="row"><span class="t" data-i18n="crm.title">CRM · Pipeline</span><span class="pill" data-i18n="crm.stage">Negociación</span></div>
+          <div class="row"><span style="font-weight:700">CT-0912 · <span data-i18n="crm.client">Metalúrgica Andes</span></span></div>
+          <b>USD <span id="usd">0</span></b>
+          <div class="stages"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+        </div>
+      </div>
+      <span class="example" data-i18n="dash.example">Vista de ejemplo</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-label="Industrias">
+  <div class="marquee-label" data-i18n="marq">Hecho para la industria</div>
+  <div class="track" id="track"></div>
+</div>
+
+<!-- ============ NOSOTROS ============ -->
+<section id="nosotros">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="about.eyebrow">Nosotros</span>
+      <h2 data-i18n="about.title">Analistas que convierten procesos en software.</h2>
+      <p data-i18n="about.sub"></p>
+    </div>
+    <h3 class="sub-h rv" data-i18n="do.title">Qué hacemos</h3>
+    <div class="why-grid why-grid-3">
+      <div class="why spot rv"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></span><h3 data-i18n="do1.t"></h3><p data-i18n="do1.d"></p></div>
+      <div class="why spot rv"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v4h-4"/></svg></span><h3 data-i18n="do2.t"></h3><p data-i18n="do2.d"></p></div>
+      <div class="why spot rv"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18h5M10 21h4M12 3a6 6 0 0 0-3.2 11.1c.5.4.8.9.9 1.4h4.6c.1-.5.4-1 .9-1.4A6 6 0 0 0 12 3z"/></svg></span><h3 data-i18n="do3.t"></h3><p data-i18n="do3.d"></p></div>
+    </div>
+    <h3 class="sub-h rv" data-i18n="approach.title">Nuestro enfoque</h3>
+    <ul class="approach rv">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ap1"></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ap2"></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ap3"></span></li>
+    </ul>
+    <h3 class="sub-h rv" data-i18n="tech.title">Tecnologías</h3>
+    <div class="integr rv" id="integr"></div>
+    <div class="team-wrap rv">
+      <h3 class="team-h" data-i18n="team.title">Las personas detrás de Nuvaryn</h3>
+      <div class="team">
+        <article class="member spot rv tilt-card">
+          <div class="avatar">SL</div>
+          <div><h3>Santiago López</h3><div class="role" data-i18n="team.role">Analista de Sistemas · Cofundador</div></div>
+          <div class="sk"><span>ERP</span><span>CRM</span><span data-i18n="sk.analysis">Análisis de procesos</span></div>
+        </article>
+        <article class="member spot rv tilt-card">
+          <div class="avatar">MP</div>
+          <div><h3>Matías Pautasso</h3><div class="role" data-i18n="team.role">Analista de Sistemas · Cofundador</div></div>
+          <div class="sk"><span>ERP</span><span>CRM</span><span data-i18n="sk.impl">Implementación</span></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROYECTOS ============ -->
+<section id="proyectos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="proj.eyebrow">Proyectos</span>
+      <h2 data-i18n="proj.title">Software real que ya construimos.</h2>
+      <p data-i18n="proj.sub"></p>
+    </div>
+    <div class="proj-grid">
+      <article class="proj spot rv">
+        <div class="proj-top"><span class="proj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h11l5 5v13H4z"/><path d="M15 3v5h5M8 13h8M8 17h5"/></svg></span><a class="proj-git" href="https://github.com/nuvarynSA/Sistema-Contable" target="_blank" rel="noopener" aria-label="Sistema Contable · GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.57.1.78-.25.78-.55v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.3-1.69-1.3-1.69-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.8 1.07.8 2.16v3.2c0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg></a></div>
+        <h3>Sistema Contable <span class="alias">SAC</span></h3>
+        <p data-i18n="pr1.d"></p>
+        <div class="proj-tags"><span>React 18</span><span>PWA</span><span>Express</span><span>Docker</span></div>
+      </article>
+      <article class="proj spot rv">
+        <div class="proj-top"><span class="proj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V8l6-3 6 3v13"/><path d="M9 12h.01M15 12h.01M9 16h.01M15 16h.01"/></svg></span><a class="proj-git" href="https://github.com/nuvarynSA/Sistema-Constructora" target="_blank" rel="noopener" aria-label="NEXORA · GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.57.1.78-.25.78-.55v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.3-1.69-1.3-1.69-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.8 1.07.8 2.16v3.2c0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg></a></div>
+        <h3>Sistema Constructora <span class="alias">NEXORA</span></h3>
+        <p data-i18n="pr2.d"></p>
+        <div class="proj-tags"><span>Next.js 15</span><span>TypeScript</span><span>Tailwind</span><span>shadcn/ui</span></div>
+      </article>
+      <article class="proj spot rv">
+        <div class="proj-top"><span class="proj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2M20 12h2M6 9v6M18 9v6M9 7v10M15 7v10M9 12h6"/></svg></span><a class="proj-git" href="https://github.com/nuvarynSA/Power-House-Gym" target="_blank" rel="noopener" aria-label="PowerHouse Gym · GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.57.1.78-.25.78-.55v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.3-1.69-1.3-1.69-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.8 1.07.8 2.16v3.2c0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg></a></div>
+        <h3>PowerHouse Gym</h3>
+        <p data-i18n="pr3.d"></p>
+        <div class="proj-tags"><span>React 18</span><span>TypeScript</span><span>Vite</span><span>PWA</span></div>
+      </article>
+      <article class="proj spot rv">
+        <div class="proj-top"><span class="proj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v4M10 9h4"/></svg></span><a class="proj-git" href="https://github.com/nuvarynSA/AiAssistant" target="_blank" rel="noopener" aria-label="AiAssistant · GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.57.1.78-.25.78-.55v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.3-1.69-1.3-1.69-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.8 1.07.8 2.16v3.2c0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg></a></div>
+        <h3>AiAssistant</h3>
+        <p data-i18n="pr4.d"></p>
+        <div class="proj-tags"><span>Next.js 14</span><span>OpenAI</span><span>pgvector</span><span>Prisma</span></div>
+      </article>
+      <article class="proj spot rv">
+        <div class="proj-top"><span class="proj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg></span><a class="proj-git" href="https://github.com/nuvarynSA/llm-stock" target="_blank" rel="noopener" aria-label="LLM Stock · GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.57.1.78-.25.78-.55v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.3-1.69-1.3-1.69-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.8 1.07.8 2.16v3.2c0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg></a></div>
+        <h3>LLM Stock</h3>
+        <p data-i18n="pr5.d"></p>
+        <div class="proj-tags"><span>TypeScript</span><span>Groq</span><span>NestJS</span><span>PostgreSQL</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREGUNTAS ============ -->
+<section id="preguntas">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="faq.eyebrow">Preguntas</span>
+      <h2 data-i18n="faq.title">Preguntas frecuentes</h2>
+      <p data-i18n="faq.sub"></p>
+    </div>
+    <div class="faq">
+      <details class="faq-item rv"><summary data-i18n="q1.q">¿Qué hace Nuvaryn?</summary><div class="faq-a"><p data-i18n="q1.a"></p></div></details>
+      <details class="faq-item rv"><summary data-i18n="q2.q"></summary><div class="faq-a"><p data-i18n="q2.a"></p></div></details>
+      <details class="faq-item rv"><summary data-i18n="q3.q"></summary><div class="faq-a"><p data-i18n="q3.a"></p></div></details>
+      <details class="faq-item rv"><summary data-i18n="q4.q"></summary><div class="faq-a"><p data-i18n="q4.a"></p></div></details>
+      <details class="faq-item rv"><summary data-i18n="q5.q"></summary><div class="faq-a"><p data-i18n="q5.a"></p></div></details>
+      <details class="faq-item rv"><summary data-i18n="q6.q"></summary><div class="faq-a"><p data-i18n="q6.a"></p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contacto">
+  <div class="wrap">
+    <div class="contact">
+      <div class="contact-left">
+        <div class="sec-head rv">
+          <span class="eyebrow" data-i18n="cta.eyebrow">Contacto</span>
+          <h2 data-i18n="cta.title">Contanos sobre tu proyecto.</h2>
+          <p data-i18n="cta.sub"></p>
+        </div>
+        <ul class="contact-info rv">
+          <li><span class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><span class="ci-l" data-i18n="contact.email">Email</span><a href="mailto:nuvarynsa@gmail.com">nuvarynsa@gmail.com</a></div></li>
+          <li><span class="ci-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.53C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.73C24 .77 23.2 0 22.22 0z"/></svg></span><div><span class="ci-l" data-i18n="contact.linkedin">LinkedIn</span><a href="https://www.linkedin.com/in/nuvarynsa" target="_blank" rel="noopener">linkedin.com/in/nuvarynsa</a></div></li>
+          <li><span class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg></span><div><span class="ci-l" data-i18n="contact.phone">Teléfonos</span><a href="tel:+543517547544">+54 351 754-7544</a> · <a href="tel:+5493513915897">+54 9 351 391-5897</a></div></li>
+        </ul>
+      </div>
+      <form class="form rv" id="form" novalidate>
+        <div class="field"><label for="f-name" data-i18n="f.name">Nombre</label><input id="f-name" name="name" required autocomplete="name"></div>
+        <div class="field"><label for="f-company" data-i18n="f.company">Empresa</label><input id="f-company" name="company" autocomplete="organization"></div>
+        <div class="field"><label for="f-email" data-i18n="f.email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="f-industry" data-i18n="f.industry">Industria</label><select id="f-industry" name="industry"></select></div>
+        <div class="field full"><label for="f-msg" data-i18n="f.msg">¿Qué te gustaría mejorar?</label><textarea id="f-msg" name="msg" data-i18n-ph="f.msgph"></textarea></div>
+        <div class="full"><button class="btn btn-primary mag" type="submit"><span data-i18n="f.send">Enviar consulta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        <div class="done" id="done" hidden><span data-i18n="f.done"></span> <code id="mailTxt"></code><button type="button" id="copyBtn" data-i18n="f.copy">Copiar</button></div>
+      </form>
+    </div>
+    <div class="band rv">
+      <span class="nmark-slot bmark" data-id="bM"></span>
+      <h3 data-i18n="band.t">Tecnología que impulsa el mañana de tu industria.</h3>
+      <a class="btn mag" href="#contacto"><span data-i18n="hero.cta1">Agendar una demo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="nmark-slot" data-id="fM"></span><span><b>Nuvaryn</b><i>S.A.</i></span></a>
+    <span class="tagline" data-i18n="tagline">Tecnología que impulsa el mañana</span>
+    <small>© <span id="yr">2026</span> Nuvaryn S.A. · <span data-i18n="foot">Todos los derechos reservados.</span></small>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* Change this to the company's real inbox */
+const CONTACT_EMAIL = "nuvarynsa@gmail.com";
+
+/* ---------- Logo (vector recreation of the ribbon N) ---------- */
+function markSVG(p){
+  const L="M10 285 V70 A35 35 0 0 1 80 70 V285 Z", R="M220 18 L290 42 V235 A35 35 0 0 1 220 235 Z";
+  return `<svg class="nmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nuvaryn">
+  <defs>
+    <linearGradient id="${p}L" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2D84FF"/><stop offset="1" stop-color="#0942C2"/></linearGradient>
+    <linearGradient id="${p}R" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2A88FF"/><stop offset="1" stop-color="#86D4FF"/></linearGradient>
+    <linearGradient id="${p}D" gradientUnits="userSpaceOnUse" x1="45" y1="70" x2="255" y2="235"><stop offset="0" stop-color="#0B53DB"/><stop offset=".55" stop-color="#2A84F8"/><stop offset="1" stop-color="#6CC6FF"/></linearGradient>
+    <linearGradient id="${p}H" gradientUnits="userSpaceOnUse" x1="58" y1="52" x2="268" y2="217"><stop offset="0" stop-color="#fff" stop-opacity=".05"/><stop offset=".6" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <clipPath id="${p}C"><path d="${L}"/><path d="${R}"/></clipPath>
+    <filter id="${p}S" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+  </defs>
+  <path class="m-l" d="${L}" fill="url(#${p}L)"/>
+  <path class="m-r" d="${R}" fill="url(#${p}R)"/>
+  <g clip-path="url(#${p}C)"><line class="m-s" x1="45" y1="70" x2="255" y2="235" stroke="#041A55" stroke-opacity=".55" stroke-width="84" stroke-linecap="round" filter="url(#${p}S)"/></g>
+  <line class="m-d" x1="45" y1="70" x2="255" y2="235" stroke="url(#${p}D)" stroke-width="70" stroke-linecap="round" pathLength="1"/>
+  <line class="m-h" x1="58.6" y1="52.7" x2="268.6" y2="217.7" stroke="url(#${p}H)" stroke-width="8" stroke-linecap="round"/>
+</svg>`;
+}
+document.querySelectorAll(".nmark-slot").forEach(s=>{
+  s.outerHTML = markSVG(s.dataset.id).replace('class="nmark"', `class="nmark ${s.classList.contains("bmark")?"bmark":""}" ${s.dataset.intro?'id="introMark"':''}`);
+});
+
+/* ---------- i18n ---------- */
+const I18N = {
+es:{
+ tagline:"Tecnología que impulsa el mañana", skip:"Saltar intro",
+ "nav.home":"Inicio","nav.about":"Nosotros","nav.projects":"Proyectos","nav.faq":"Preguntas","nav.cta":"Contacto",
+ "theme.light":"Modo claro","theme.dark":"Modo oscuro",
+ "about.eyebrow":"Nosotros","about.title":"Soluciones de software a medida para empresas.",
+ "about.sub":"Nuvaryn S.A. es una empresa de desarrollo de software dedicada a diseñar, construir y mantener soluciones digitales que acompañan los objetivos de negocio de nuestros clientes. Combinamos buenas prácticas de ingeniería, arquitecturas sólidas y un enfoque centrado en la calidad para entregar productos confiables y escalables.",
+ "do.title":"Qué hacemos",
+ "do1.t":"Desarrollo a medida","do1.d":"Aplicaciones web y móviles diseñadas según las necesidades específicas de cada cliente.",
+ "do2.t":"Modernización de sistemas","do2.d":"Evolución y mantenimiento de plataformas existentes hacia arquitecturas mantenibles y escalables.",
+ "do3.t":"Consultoría técnica","do3.d":"Acompañamiento en decisiones de arquitectura, tecnología y procesos de desarrollo.",
+ "approach.title":"Nuestro enfoque",
+ "ap1":"Fundamentos sólidos: arquitectura, patrones de diseño y código mantenible.",
+ "ap2":"Calidad verificable a través de pruebas y revisión de código.",
+ "ap3":"Comunicación clara y trabajo orientado a resultados.",
+ "tech.title":"Tecnologías",
+ "contact.email":"Email","contact.linkedin":"LinkedIn","contact.phone":"Teléfonos",
+ "proj.eyebrow":"Proyectos","proj.title":"Software real que ya construimos.",
+ "proj.sub":"Una selección de sistemas que diseñamos y desarrollamos. Cada uno incluye una demo navegable y su código en GitHub.",
+ "pr1.d":"Gestión integral para distribuidoras: ventas, compras, gastos, flujo de caja, capital de socios y préstamos, con KPIs financieros, gráficos y reportes.",
+ "pr2.d":"Compras y logística para constructoras: pedidos en tablero Kanban, licitaciones, obras y centros de costo, reserva de vehículos, reportes de presupuesto y auditoría.",
+ "pr3.d":"Control de accesos para gimnasios: ingreso por QR/código de barras, reserva de turnos de guardería y portal de autogestión para socios.",
+ "pr4.d":"Asistente de ventas B2B con IA: responde consultas de producto y precio, recomienda por búsqueda semántica y capta leads calificados en un chat en streaming.",
+ "pr5.d":"Consultá tu stock mediante chat.",
+ "faq.eyebrow":"Preguntas","faq.title":"Preguntas frecuentes","faq.sub":"Lo que más nos consultan antes de empezar a trabajar juntos.",
+ "q1.q":"¿Qué hace Nuvaryn?","q1.a":"Diseñamos e implementamos software de gestión a medida: ERP, CRM y aplicaciones web para empresas e industria.",
+ "q2.q":"¿Trabajan a medida o con sistemas enlatados?","q2.a":"A medida. Partimos de tus procesos reales y el sistema se adapta a tu operación, no al revés.",
+ "q3.q":"¿Puedo ver ejemplos de su trabajo?","q3.a":"Sí. En la sección Proyectos publicamos demos navegables y el código de sistemas reales que construimos.",
+ "q4.q":"¿Qué tecnologías usan?","q4.a":"Stack moderno: React, Next.js, TypeScript, Node, PostgreSQL y modelos de IA cuando el proyecto lo necesita.",
+ "q5.q":"¿Cómo es el proceso de trabajo?","q5.a":"Relevamiento, diseño, desarrollo por etapas con entregas que podés probar, implementación con migración y capacitación, y soporte continuo.",
+ "q6.q":"¿Cómo empiezo?","q6.a":"Escribinos desde la sección Contacto. Respondemos con una propuesta inicial y una demo pensada para tu caso.",
+ "hero.eyebrow":"Desarrollo de software a medida",
+ "hero.title":'Software que entiende <em class="grad">tu negocio</em>.',
+ "hero.sub":"Diseñamos, construimos y mantenemos aplicaciones web y móviles a medida para comercios, industrias y empresas de servicios. Soluciones confiables y escalables, pensadas para tus objetivos de negocio.",
+ "hero.cta1":"Agendar una demo","hero.cta2":"Ver proyectos",
+ chip1:"A medida",chip2:"Web y móvil",chip3:"Soporte directo",
+ "dash.title":"Nuvaryn · Panel en vivo","dash.oee":"OEE del turno","dash.orders":"Órdenes en curso","dash.stock":"Stock crítico","dash.prod":"Producción por hora","dash.ops":"Órdenes de producción","dash.example":"Vista de ejemplo",
+ op1:"Bridas Ø120 mm · 640 u",op2:"Eje SAE 1045 · 1.200 u",op3:"Tapa inyectada PP · 8.000 u",
+ "crm.title":"CRM · Pipeline","crm.stage":"Negociación","crm.client":"Metalúrgica Andes",
+ marq:"Pensado para cada rubro",
+ industries:["Comercio y retail","Industria y manufactura","Servicios profesionales","Salud","Educación","Logística y transporte","Gastronomía y hotelería","Construcción","Agro","Finanzas"],
+ "sol.eyebrow":"Soluciones","sol.title":"Dos sistemas, una sola fuente de verdad.",
+ "sol.sub":"El ERP ordena lo que pasa dentro de la planta. El CRM ordena todo lo que pasa con tus clientes. Comparten datos en tiempo real, sin planillas intermedias.",
+ "erp.tag":"ERP industrial","erp.title":"Control total de la operación","erp.desc":"Desde la materia prima hasta el producto terminado, con trazabilidad por lote y costos reales por orden.",
+ "erp.m1":"Planificación de producción y MRP","erp.m2":"Inventario multidepósito y lotes","erp.m3":"Compras y proveedores","erp.m4":"Costos industriales por orden","erp.m5":"Calidad y trazabilidad","erp.m6":"Mantenimiento preventivo",
+ "crm.tag":"CRM industrial","crm.h":"Ventas técnicas sin perder oportunidades","crm.desc":"Cotizaciones con lista de materiales, seguimiento comercial y postventa, conectados con producción.",
+ "crm.m1":"Pipeline comercial y pronósticos","crm.m2":"Cotizador técnico con BOM","crm.m3":"Gestión de distribuidores","crm.m4":"Postventa y reclamos","crm.m5":"Portal de clientes","crm.m6":"Tableros comerciales",
+ "flow.eyebrow":"Cómo funciona","flow.title":"De la cotización al despacho, sin cortes.","flow.sub":"Cada etapa recibe los datos de la anterior. Nadie vuelve a cargar lo que ya existe.",
+ "f1.t":"Cotización","f1.d":"El CRM arma el precio a partir de la lista de materiales.",
+ "f2.t":"Pedido","f2.d":"El cliente aprueba y el pedido entra directo al ERP.",
+ "f3.t":"Planificación","f3.d":"El MRP calcula materiales, capacidad y fechas de entrega.",
+ "f4.t":"Producción","f4.d":"Órdenes, consumos y tiempos registrados en planta.",
+ "f5.t":"Calidad","f5.d":"Controles por lote con trazabilidad completa.",
+ "f6.t":"Despacho y factura","f6.d":"Remito, factura electrónica y aviso al cliente.",
+ "why.eyebrow":"Por qué Nuvaryn","why.title":"Analistas que hablan el idioma de la fábrica.",
+ "w1.t":"A medida, no enlatado","w1.d":"Partimos de tus procesos reales. El sistema se adapta a la planta, no al revés.",
+ "w2.t":"Se integra con lo que ya tenés","w2.d":"Balanzas, lectores de código, PLC, planillas actuales, e-commerce y facturación electrónica.",
+ "w3.t":"Datos en tiempo real","w3.d":"Tableros de OEE, stock y ventas que se actualizan solos, en la oficina o en el celular.",
+ "w4.t":"Trato directo","w4.d":"Hablás con quienes diseñan el sistema. Sin intermediarios ni tickets perdidos.",
+ integr:["React","Next.js","TypeScript","Node.js","PostgreSQL","React Native","Docker","IA / LLM"],
+ "proc.eyebrow":"Método","proc.title":"Cómo trabajamos",
+ "p1.t":"Relevamiento","p1.d":"Recorremos la planta y mapeamos procesos, datos y puntos críticos.",
+ "p2.t":"Diseño","p2.d":"Definimos módulos, flujos y tableros junto a tu equipo.",
+ "p3.t":"Desarrollo","p3.d":"Construimos por etapas, con entregas que podés probar.",
+ "p4.t":"Implementación","p4.d":"Migramos datos, capacitamos usuarios y acompañamos la puesta en marcha.",
+ "p5.t":"Evolución","p5.d":"Soporte continuo y mejoras a medida que la empresa crece.",
+ "team.eyebrow":"Equipo","team.title":"Las personas detrás de Nuvaryn",
+ "team.sub":"Somos dos analistas de sistemas que fundamos Nuvaryn para darle a la industria software a la altura de su operación.",
+ "team.role":"Analista de Sistemas · Cofundador","sk.analysis":"Análisis de procesos","sk.impl":"Implementación",
+ "cta.eyebrow":"Contacto","cta.title":"Contanos sobre tu proyecto.","cta.sub":"Te respondemos con una propuesta inicial y una demo pensada para tu caso.",
+ "f.name":"Nombre","f.company":"Empresa","f.email":"Email","f.industry":"Industria","f.msg":"¿Qué te gustaría mejorar?",
+ "f.msgph":"Ej.: no sabemos el costo real de cada orden de producción","f.send":"Enviar consulta","f.select":"Elegí una opción","f.other":"Otra",
+ "f.done":"Abrimos tu correo con el mensaje listo. Si no se abrió, escribinos a","f.copy":"Copiar","f.copied":"Copiado","f.err":"Completá nombre y un email válido.",
+ "f.subject":"Consulta desde la web","band.t":"Tecnología que impulsa el mañana de tu negocio.","foot":"Todos los derechos reservados."
+},
+en:{
+ tagline:"Technology that drives tomorrow", skip:"Skip intro",
+ "nav.home":"Home","nav.about":"About","nav.projects":"Projects","nav.faq":"FAQ","nav.cta":"Contact",
+ "theme.light":"Light mode","theme.dark":"Dark mode",
+ "about.eyebrow":"About","about.title":"Custom software solutions for companies.",
+ "about.sub":"Nuvaryn S.A. is a software development company dedicated to designing, building and maintaining digital solutions that support our clients' business goals. We combine solid engineering practices, sound architectures and a quality-focused approach to deliver reliable, scalable products.",
+ "do.title":"What we do",
+ "do1.t":"Custom development","do1.d":"Web and mobile applications designed around each client's specific needs.",
+ "do2.t":"Systems modernization","do2.d":"Evolving and maintaining existing platforms toward maintainable, scalable architectures.",
+ "do3.t":"Technical consulting","do3.d":"Guidance on architecture, technology and development process decisions.",
+ "approach.title":"Our approach",
+ "ap1":"Solid fundamentals: architecture, design patterns and maintainable code.",
+ "ap2":"Verifiable quality through testing and code review.",
+ "ap3":"Clear communication and results-oriented work.",
+ "tech.title":"Technologies",
+ "contact.email":"Email","contact.linkedin":"LinkedIn","contact.phone":"Phones",
+ "proj.eyebrow":"Projects","proj.title":"Real software we've already built.",
+ "proj.sub":"A selection of systems we designed and developed. Each one ships with a live demo and its source on GitHub.",
+ "pr1.d":"End-to-end management for distributors: sales, purchases, expenses, cash flow, partners' capital and loans, with financial KPIs, charts and reports.",
+ "pr2.d":"Procurement and logistics for construction: purchase requests on a Kanban board, tenders, projects and cost centers, vehicle booking, budget reports and an audit log.",
+ "pr3.d":"Access control for gyms: QR/barcode check-in, daycare shift booking and a self-service portal for members.",
+ "pr4.d":"B2B AI sales assistant: answers product and pricing questions, recommends items via semantic search and captures qualified leads in a streaming chat.",
+ "pr5.d":"Check your stock through chat.",
+ "faq.eyebrow":"FAQ","faq.title":"Frequently asked questions","faq.sub":"The things people ask us most before we start working together.",
+ "q1.q":"What does Nuvaryn do?","q1.a":"We design and implement custom management software: ERP, CRM and web apps for businesses and industry.",
+ "q2.q":"Custom-built or off-the-shelf?","q2.a":"Custom-built. We start from your real processes and the system adapts to your operation, not the other way around.",
+ "q3.q":"Can I see examples of your work?","q3.a":"Yes. In the Projects section we publish live demos and the source code of real systems we built.",
+ "q4.q":"What technologies do you use?","q4.a":"A modern stack: React, Next.js, TypeScript, Node, PostgreSQL and AI models when the project calls for it.",
+ "q5.q":"What does the process look like?","q5.a":"Discovery, design, staged development with releases you can test, rollout with data migration and training, and ongoing support.",
+ "q6.q":"How do I get started?","q6.a":"Write to us from the Contact section. We reply with an initial proposal and a demo built around your case.",
+ "hero.eyebrow":"Custom software development",
+ "hero.title":'Software that understands <em class="grad">your business</em>.',
+ "hero.sub":"We design, build and maintain custom web and mobile apps for retailers, manufacturers and service companies. Reliable, scalable solutions built around your business goals.",
+ "hero.cta1":"Book a demo","hero.cta2":"See projects",
+ chip1:"Custom-built",chip2:"Web & mobile",chip3:"Direct support",
+ "dash.title":"Nuvaryn · Live panel","dash.oee":"Shift OEE","dash.orders":"Open orders","dash.stock":"Critical stock","dash.prod":"Output per hour","dash.ops":"Work orders","dash.example":"Sample view",
+ op1:"Flanges Ø120 mm · 640 pcs",op2:"SAE 1045 shaft · 1,200 pcs",op3:"Injected PP lid · 8,000 pcs",
+ "crm.title":"CRM · Pipeline","crm.stage":"Negotiation","crm.client":"Andes Metalworks",
+ marq:"Built for every sector",
+ industries:["Retail & commerce","Industry & manufacturing","Professional services","Healthcare","Education","Logistics & transport","Food & hospitality","Construction","Agriculture","Finance"],
+ "sol.eyebrow":"Solutions","sol.title":"Two systems, one source of truth.",
+ "sol.sub":"The ERP organizes everything inside the plant. The CRM organizes everything with your customers. They share data in real time, with no spreadsheets in between.",
+ "erp.tag":"Industrial ERP","erp.title":"Full control of operations","erp.desc":"From raw material to finished goods, with lot traceability and actual cost per order.",
+ "erp.m1":"Production planning & MRP","erp.m2":"Multi-warehouse inventory & lots","erp.m3":"Purchasing & suppliers","erp.m4":"Job costing per order","erp.m5":"Quality & traceability","erp.m6":"Preventive maintenance",
+ "crm.tag":"Industrial CRM","crm.h":"Technical sales without lost deals","crm.desc":"Quotes built from bills of materials, sales follow-up and after-sales, connected to production.",
+ "crm.m1":"Sales pipeline & forecasts","crm.m2":"Technical quoting with BOM","crm.m3":"Distributor management","crm.m4":"After-sales & claims","crm.m5":"Customer portal","crm.m6":"Sales dashboards",
+ "flow.eyebrow":"How it works","flow.title":"From quote to shipment, without gaps.","flow.sub":"Each stage receives the data from the one before. Nobody re-enters what already exists.",
+ "f1.t":"Quote","f1.d":"The CRM prices the job from the bill of materials.",
+ "f2.t":"Order","f2.d":"The customer approves and the order flows into the ERP.",
+ "f3.t":"Planning","f3.d":"MRP calculates materials, capacity and delivery dates.",
+ "f4.t":"Production","f4.d":"Work orders, consumption and times logged on the floor.",
+ "f5.t":"Quality","f5.d":"Lot-level inspections with full traceability.",
+ "f6.t":"Shipping & invoice","f6.d":"Delivery note, e-invoice and customer notification.",
+ "why.eyebrow":"Why Nuvaryn","why.title":"Analysts who speak the language of the factory.",
+ "w1.t":"Tailored, not off-the-shelf","w1.d":"We start from your real processes. The system adapts to the plant, not the other way around.",
+ "w2.t":"Works with what you have","w2.d":"Scales, barcode readers, PLCs, current spreadsheets, e-commerce and e-invoicing.",
+ "w3.t":"Real-time data","w3.d":"OEE, inventory and sales dashboards that update themselves, at the office or on your phone.",
+ "w4.t":"Direct contact","w4.d":"You talk to the people who design the system. No middlemen, no lost tickets.",
+ integr:["React","Next.js","TypeScript","Node.js","PostgreSQL","React Native","Docker","AI / LLM"],
+ "proc.eyebrow":"Method","proc.title":"How we work",
+ "p1.t":"Discovery","p1.d":"We walk the plant and map processes, data and pain points.",
+ "p2.t":"Design","p2.d":"We define modules, workflows and dashboards with your team.",
+ "p3.t":"Development","p3.d":"We build in stages, with releases you can test.",
+ "p4.t":"Rollout","p4.d":"We migrate data, train users and support go-live.",
+ "p5.t":"Evolution","p5.d":"Ongoing support and improvements as the company grows.",
+ "team.eyebrow":"Team","team.title":"The people behind Nuvaryn",
+ "team.sub":"We are two systems analysts who founded Nuvaryn to give industry software that matches the scale of its operations.",
+ "team.role":"Systems Analyst · Co-founder","sk.analysis":"Process analysis","sk.impl":"Implementation",
+ "cta.eyebrow":"Contact","cta.title":"Tell us about your project.","cta.sub":"We reply with an initial proposal and a demo built around your case.",
+ "f.name":"Name","f.company":"Company","f.email":"Email","f.industry":"Industry","f.msg":"What would you like to improve?",
+ "f.msgph":"E.g. we don't know the real cost of each work order","f.send":"Send inquiry","f.select":"Choose one","f.other":"Other",
+ "f.done":"We opened your email app with the message ready. If it didn't open, write to us at","f.copy":"Copy","f.copied":"Copied","f.err":"Please enter your name and a valid email.",
+ "f.subject":"Website inquiry","band.t":"Technology that drives your business forward.","foot":"All rights reserved."
+}
+};
+
+function detectLang(){
+  try{ const s=localStorage.getItem("nv-lang"); if(s&&I18N[s]) return s; }catch(e){}
+  const list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language||"es"];
+  for(const l of list){ const k=(l||"").slice(0,2).toLowerCase(); if(I18N[k]) return k; }
+  return "en";
+}
+let LANG = detectLang();
+const t = k => I18N[LANG][k] ?? I18N.es[k] ?? "";
+function applyLang(lang){
+  LANG = lang; document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent=t(el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>el.innerHTML=t(el.dataset.i18nHtml));
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>el.placeholder=t(el.dataset.i18nPh));
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===lang));
+  const ind=t("industries");
+  document.getElementById("track").innerHTML=[...ind,...ind].map(x=>`<span>${x}</span>`).join("");
+  document.getElementById("integr").innerHTML=t("integr").map(x=>`<span>${x}</span>`).join("");
+  const sel=document.getElementById("f-industry"), cur=sel.selectedIndex;
+  sel.innerHTML=`<option value="">${t("f.select")}</option>`+ind.map(x=>`<option>${x}</option>`).join("")+`<option>${t("f.other")}</option>`;
+  if(cur>0) sel.selectedIndex=cur;
+  document.getElementById("mailTxt").textContent=CONTACT_EMAIL;
+  document.querySelectorAll(".theme button").forEach(b=>{const l=t(b.dataset.setTheme==="dark"?"theme.dark":"theme.light"); b.setAttribute("aria-label",l); b.setAttribute("title",l);});
+  document.title = "Nuvaryn S.A.";
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>{
+  applyLang(b.dataset.lang); try{localStorage.setItem("nv-lang",b.dataset.lang)}catch(e){}
+}));
+applyLang(LANG);
+document.getElementById("yr").textContent=new Date().getFullYear();
+
+/* ---------- Theme (día / noche) ---------- */
+const themeBtns=document.querySelectorAll(".theme button"), root=document.documentElement;
+const sysDark=()=>matchMedia("(prefers-color-scheme: dark)").matches;
+function applyTheme(mode){
+  root.setAttribute("data-theme",mode);
+  themeBtns.forEach(b=>{const l=t(b.dataset.setTheme==="dark"?"theme.dark":"theme.light"); b.setAttribute("aria-pressed",String(b.dataset.setTheme===mode)); b.setAttribute("aria-label",l); b.setAttribute("title",l);});
+  dispatchEvent(new Event("nv-theme"));
+}
+let savedTheme=null; try{savedTheme=localStorage.getItem("nv-theme")}catch(e){}
+applyTheme(savedTheme==="dark"||savedTheme==="light"?savedTheme:(sysDark()?"dark":"light"));
+themeBtns.forEach(b=>b.addEventListener("click",()=>{
+  applyTheme(b.dataset.setTheme); try{localStorage.setItem("nv-theme",b.dataset.setTheme)}catch(e){}
+}));
+
+/* ---------- Nav ---------- */
+const nav=document.getElementById("nav"), links=document.getElementById("links"), menuBtn=document.getElementById("menuBtn");
+addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>10),{passive:true});
+menuBtn.addEventListener("click",()=>{const o=links.classList.toggle("open");menuBtn.setAttribute("aria-expanded",o)});
+links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{links.classList.remove("open");menuBtn.setAttribute("aria-expanded","false")}));
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const fine = matchMedia("(pointer:fine)").matches;
+const hasGSAP = typeof gsap!=="undefined";
+
+/* ---------- Live dashboard ---------- */
+const bars=document.getElementById("bars"); let series=[62,70,66,74,81,77,85,79,88,92];
+bars.innerHTML=series.map(()=>"<i></i>").join("");
+const MAXU=100;
+function drawBars(){ [...bars.children].forEach((b,i)=>b.style.height=(series[i]/MAXU*100)+"%"); document.getElementById("lastU").textContent=series.at(-1)+" u/h"; }
+let oee=0; const C=131.95;
+function setOEE(v){ oee=v; document.getElementById("oee").textContent=v.toFixed(1); document.getElementById("gVal").style.strokeDashoffset=C*(1-v/100); }
+function count(el,to,dur=1400,fmt=v=>Math.round(v).toLocaleString(LANG==="en"?"en-US":"es-AR")){
+  if(reduce){el.textContent=fmt(to);return}
+  const s=performance.now(); const f=n=>{const p=Math.min(1,(n-s)/dur),e=1-Math.pow(1-p,3);el.textContent=fmt(to*e);if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f);
+}
+function startDash(){
+  drawBars();
+  count(document.getElementById("ord"),37); count(document.getElementById("stk"),6); count(document.getElementById("usd"),18400,1800);
+  if(reduce){setOEE(82.4)} else { const s=performance.now(); const f=n=>{const p=Math.min(1,(n-s)/1500),e=1-Math.pow(1-p,3);setOEE(82.4*e);if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f); }
+  document.querySelectorAll(".op").forEach(op=>{const pc=op.querySelector(".pc"),p=+pc.dataset.p;op.querySelector(".pb i").style.width=p+"%";count(pc,p,1400,v=>Math.round(v)+"%")});
+  if(!reduce) setInterval(()=>{
+    series.push(Math.max(55,Math.min(98,series.at(-1)+Math.round((Math.random()-.45)*14)))); series.shift(); drawBars();
+    setOEE(Math.max(78,Math.min(88,oee+(Math.random()-.45)*.8)));
+    document.querySelectorAll(".op").forEach(op=>{const pc=op.querySelector(".pc");let p=Math.min(100,+pc.dataset.p+(Math.random()<.5?1:0));pc.dataset.p=p;pc.textContent=p+"%";op.querySelector(".pb i").style.width=p+"%"});
+  },2400);
+}
+
+/* ---------- Hero network canvas ---------- */
+(function(){
+  const cv=document.getElementById("net"), ctx=cv.getContext("2d"); let W,H,pts=[],dpr=Math.min(2,devicePixelRatio||1),mouse={x:-999,y:-999},run=true;
+  function size(){W=cv.offsetWidth;H=cv.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.round(Math.min(80,W*H/16000));pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))}
+  size(); addEventListener("resize",size);
+  cv.parentElement.addEventListener("pointermove",e=>{const r=cv.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+  cv.parentElement.addEventListener("pointerleave",()=>{mouse.x=mouse.y=-999});
+  new IntersectionObserver(([e])=>{run=e.isIntersecting;if(run)loop()}).observe(cv);
+  function col(){return getComputedStyle(document.documentElement).getPropertyValue("--blue").trim()||"#1466EF"}
+  let c=col(); matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>c=col());
+  addEventListener("nv-theme",()=>c=col());
+  function loop(){ if(!run) return; ctx.clearRect(0,0,W,H);
+    for(const p of pts){ if(!reduce){p.x+=p.vx;p.y+=p.vy;} if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.hypot(dx,dy); if(d<120){p.x+=dx/d*.8;p.y+=dy/d*.8} }
+    ctx.strokeStyle=c; ctx.fillStyle=c;
+    for(let i=0;i<pts.length;i++){ const a=pts[i];
+      for(let j=i+1;j<pts.length;j++){const b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y); if(d<130){ctx.globalAlpha=(1-d/130)*.22;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}
+      ctx.globalAlpha=.5;ctx.beginPath();ctx.arc(a.x,a.y,1.6,0,6.28);ctx.fill(); }
+    ctx.globalAlpha=1; if(!reduce) requestAnimationFrame(loop); }
+  loop();
+})();
+
+/* ---------- Pointer effects ---------- */
+document.querySelectorAll(".spot").forEach(el=>el.addEventListener("pointermove",e=>{const r=el.getBoundingClientRect();el.style.setProperty("--x",e.clientX-r.left+"px");el.style.setProperty("--y",e.clientY-r.top+"px")}));
+if(fine && !reduce){
+  document.querySelectorAll(".mag").forEach(b=>{
+    b.addEventListener("pointermove",e=>{const r=b.getBoundingClientRect();b.style.setProperty("--mx",(e.clientX-r.left-r.width/2)*.18+"px");b.style.setProperty("--my",(e.clientY-r.top-r.height/2)*.25+"px")});
+    b.addEventListener("pointerleave",()=>{b.style.setProperty("--mx","0px");b.style.setProperty("--my","0px")});
+  });
+  const stage=document.getElementById("stage"), tilt=document.getElementById("tilt");
+  stage.addEventListener("pointermove",e=>{const r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;tilt.style.transform=`rotateY(${x*10}deg) rotateX(${-y*8}deg)`});
+  stage.addEventListener("pointerleave",()=>tilt.style.transform="rotateY(-6deg) rotateX(4deg)");
+  tilt.style.transform="rotateY(-6deg) rotateX(4deg)";
+  document.querySelectorAll(".tilt-card").forEach(c=>{
+    c.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`});
+    c.addEventListener("pointerleave",()=>c.style.transform="");
+  });
+}
+
+/* ---------- Form ---------- */
+document.getElementById("form").addEventListener("submit",e=>{
+  e.preventDefault(); const f=e.target, d=Object.fromEntries(new FormData(f));
+  if(!d.name || !/^\S+@\S+\.\S+$/.test(d.email||"")){ const em=f.querySelector(d.name?"#f-email":"#f-name"); em.focus(); em.setCustomValidity(t("f.err")); em.reportValidity(); setTimeout(()=>em.setCustomValidity(""),2500); return; }
+  const body=`${t("f.name")}: ${d.name}\n${t("f.company")}: ${d.company||"-"}\n${t("f.email")}: ${d.email}\n${t("f.industry")}: ${d.industry||"-"}\n\n${d.msg||""}`;
+  const a=document.createElement("a"); a.href=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(t("f.subject")+(d.company?" · "+d.company:""))}&body=${encodeURIComponent(body)}`; a.click();
+  document.getElementById("done").hidden=false;
+});
+document.getElementById("copyBtn").addEventListener("click",function(){
+  const b=this; navigator.clipboard.writeText(CONTACT_EMAIL).then(()=>{b.textContent=t("f.copied");setTimeout(()=>b.textContent=t("f.copy"),1600)}).catch(()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("mailTxt"));const s=getSelection();s.removeAllRanges();s.addRange(r)});
+});
+
+/* ---------- Intro + scroll motion ---------- */
+const intro=document.getElementById("intro");
+let seen=false; try{seen=sessionStorage.getItem("nv-intro")==="1"}catch(e){}
+function heroIn(){
+  startDash();
+  if(!hasGSAP||reduce) return;
+  gsap.from(".h-in",{y:40,duration:1,ease:"power3.out",stagger:.09});
+  gsap.from(".h-vis",{y:60,rotateX:12,scale:.94,duration:1.4,ease:"expo.out",delay:.15});
+  gsap.from(".crm-card",{x:-40,duration:1.2,ease:"expo.out",delay:.5});
+}
+function endIntro(){ intro.remove(); heroIn(); try{sessionStorage.setItem("nv-intro","1")}catch(e){} }
+
+if(!hasGSAP || reduce || seen){ intro.remove(); heroIn(); }
+else{
+  document.body.style.overflow="hidden";
+  const m=document.getElementById("introMark");
+  gsap.set(m.querySelector(".m-l"),{transformOrigin:"50% 100%",scaleY:0});
+  gsap.set(m.querySelector(".m-r"),{transformOrigin:"50% 0%",scaleY:0});
+  gsap.set(m.querySelectorAll(".m-s,.m-h"),{opacity:0});
+  gsap.set(m.querySelector(".m-d"),{strokeDasharray:1,strokeDashoffset:1,opacity:0});
+  gsap.set(".intro-name .chars span",{yPercent:115});
+  gsap.set(".intro-tag",{opacity:0,letterSpacing:"1.1em"});
+  gsap.set(intro,{clipPath:"inset(0% 0% 0% 0%)"});
+  const tl=gsap.timeline({onComplete:()=>{document.body.style.overflow="";endIntro()}});
+  tl.to(".halo",{opacity:1,scale:1.1,duration:1.6,ease:"power2.out"},0)
+    .to(".intro-bar",{scaleX:1,duration:3.1,ease:"power1.inOut"},0)
+    .to(m.querySelector(".m-l"),{scaleY:1,duration:.7,ease:"power3.out"},.15)
+    .set(m.querySelector(".m-d"),{opacity:1},.6)
+    .to(m.querySelector(".m-d"),{strokeDashoffset:0,duration:.75,ease:"power2.inOut"},.6)
+    .to(m.querySelector(".m-r"),{scaleY:1,duration:.7,ease:"power3.out"},1.15)
+    .to(m.querySelectorAll(".m-s,.m-h"),{opacity:1,duration:.5},1.4)
+    .from(m,{rotate:-8,scale:.85,duration:1.6,ease:"expo.out"},.1)
+    .to(".intro-name .chars span",{yPercent:0,duration:.8,ease:"expo.out",stagger:.045},1.05)
+    .to(".intro-tag",{opacity:1,letterSpacing:".45em",duration:1.1,ease:"power3.out"},1.6)
+    .fromTo(".intro-sweep",{left:"-30%",opacity:1},{left:"120%",duration:1,ease:"power2.inOut"},2.05)
+    .to(".intro-lockup",{scale:1.04,duration:.6,ease:"power2.in"},2.9)
+    .to(intro,{clipPath:"inset(0% 0% 100% 0%)",duration:.9,ease:"expo.inOut"},3.15)
+    .to(".intro-lockup",{y:-80,opacity:0,duration:.7,ease:"power2.in"},3.15);
+  const skip=()=>{tl.progress(1)};
+  document.getElementById("skip").addEventListener("click",skip);
+  addEventListener("keydown",e=>{if(e.key==="Escape"&&document.body.contains(intro))skip()});
+}
+
+if(hasGSAP && typeof ScrollTrigger!=="undefined" && !reduce){
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.batch(".rv",{start:"top 88%",once:true,onEnter:els=>gsap.from(els,{y:50,scale:.98,duration:1,ease:"power3.out",stagger:.08,overwrite:true})});
+  gsap.to(".band .bmark",{rotate:8,y:40,ease:"none",scrollTrigger:{trigger:".band",start:"top bottom",end:"bottom top",scrub:true}});
+  gsap.to(".tower.t1",{yPercent:-10,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:true}});
+}
+</script>
