@@ -1,8 +1,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="logo/nuvaryn-isotipo.svg">
-<link rel="icon" type="image/png" href="logo/nuvaryn-isotipo.png">
-<link rel="apple-touch-icon" href="logo/nuvaryn-isotipo.png">
+<link rel="icon" type="image/png" sizes="192x192" href="logo/icon-192.png">
+<link rel="apple-touch-icon" href="logo/apple-touch-icon.png">
+<meta name="theme-color" content="#0A1F4D">
+<meta property="og:title" content="Nuvaryn S.A.">
+<meta property="og:image" content="logo/nuvaryn-logo.png">
 <title>Nuvaryn S.A.</title>
 <meta name="description" content="Nuvaryn S.A. — Sistemas ERP y CRM para la industria.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +53,7 @@ a{color:inherit}
 #intro .halo{position:absolute;width:70vmax;height:70vmax;border-radius:50%;background:radial-gradient(circle,rgba(40,130,255,.35),rgba(40,130,255,0) 60%);opacity:0}
 #intro .lines{position:absolute;inset:0;background-image:linear-gradient(rgba(90,160,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(90,160,255,.07) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(circle at 50% 50%,#000,transparent 65%);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 65%)}
 .intro-lockup{position:relative;display:flex;align-items:center;gap:clamp(14px,3vw,34px);padding-inline:16px;flex-wrap:wrap;justify-content:center}
-.intro-lockup .nmark{width:clamp(84px,14vw,150px);height:auto;filter:drop-shadow(0 20px 50px rgba(30,120,255,.45))}
+.intro-lockup .nmark{width:clamp(96px,15vw,170px);height:auto;overflow:visible;filter:drop-shadow(0 22px 50px rgba(30,120,255,.5))}
 .intro-word{display:flex;flex-direction:column;gap:clamp(8px,1.4vw,16px)}
 .intro-name{font-family:var(--f-display);font-weight:800;font-size:clamp(48px,10vw,124px);line-height:.9;letter-spacing:-.035em;display:flex;align-items:baseline;gap:.18em}
 .intro-name .chars{display:inline-flex;overflow:hidden;padding-bottom:.08em}
@@ -66,7 +70,7 @@ a{color:inherit}
 .nav.scrolled{background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.brand .nmark{width:36px;height:36px}
+.brand .nmark{width:40px;height:auto;flex:none}
 .brand b{font-family:var(--f-display);font-weight:800;font-size:22px;letter-spacing:-.03em;color:var(--ink)}
 .brand i{font-style:normal;font-family:var(--f-display);font-weight:600;font-size:15px;color:var(--blue);margin-left:4px}
 .nav-links{display:flex;align-items:center;gap:28px}
@@ -244,8 +248,13 @@ section{padding-block:clamp(70px,10vw,130px)}
 .team{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px}
 @media (max-width:640px){.team{grid-template-columns:1fr}}
 .member{border-radius:26px;padding:28px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:18px;min-width:0;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.avatar{width:92px;height:92px;border-radius:26px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:32px;color:#fff;letter-spacing:-.02em;background:linear-gradient(135deg,#0A47C9,#2F8CFF 55%,#7FD0FF);box-shadow:0 18px 36px -14px rgba(20,102,239,.8);position:relative;overflow:hidden}
-.avatar::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s}
+.member{padding:14px 14px 26px}
+.member > div:not(.avatar),.member .sk{padding-inline:14px}
+.avatar{width:100%;aspect-ratio:4/4.2;max-width:100%;border-radius:18px;background:linear-gradient(135deg,#0A47C9,#2F8CFF 55%,#7FD0FF);box-shadow:0 22px 44px -22px rgba(20,102,239,.8);position:relative;overflow:hidden;isolation:isolate}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block;transition:transform 1s cubic-bezier(.2,.8,.2,1),filter .6s}
+.avatar::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 55%,rgba(6,33,95,.55)),linear-gradient(135deg,rgba(20,102,239,.18),transparent 50%);pointer-events:none}
+.member:hover .avatar img{transform:scale(1.05)}
+.avatar::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s}
 .member:hover .avatar::after{transform:translateX(120%)}
 .member h3{font-size:24px;font-weight:800}
 .member .role{font-family:var(--f-mono);font-size:12.5px;color:var(--blue);letter-spacing:.04em}
@@ -457,12 +466,12 @@ footer small{color:var(--muted);font-size:13px}
       <h3 class="team-h" data-i18n="team.title">Las personas detrás de Nuvaryn</h3>
       <div class="team">
         <article class="member spot rv tilt-card">
-          <div class="avatar">SL</div>
+          <div class="avatar"><img src="img/team/santiago-lopez.jpg" alt="Santiago López" loading="lazy" width="800" height="960"></div>
           <div><h3>Santiago López</h3><div class="role" data-i18n="team.role">Analista de Sistemas · Cofundador</div></div>
           <div class="sk"><span>ERP</span><span>CRM</span><span data-i18n="sk.analysis">Análisis de procesos</span></div>
         </article>
         <article class="member spot rv tilt-card">
-          <div class="avatar">MP</div>
+          <div class="avatar"><img src="img/team/matias-pautasso.jpg" alt="Matías Pautasso" loading="lazy" width="800" height="960"></div>
           <div><h3>Matías Pautasso</h3><div class="role" data-i18n="team.role">Analista de Sistemas · Cofundador</div></div>
           <div class="sk"><span>ERP</span><span>CRM</span><span data-i18n="sk.impl">Implementación</span></div>
         </article>
@@ -582,23 +591,43 @@ footer small{color:var(--muted);font-size:13px}
 /* Change this to the company's real inbox */
 const CONTACT_EMAIL = "nuvarynsa@gmail.com";
 
-/* ---------- Logo (vector recreation of the ribbon N) ---------- */
+/* ---------- Logo (official Nuvaryn ribbon N, vector) ---------- */
+const NV_BODY="M80.5 186C94.5 164 118.5 152 148.5 144C162.5 142 178.5 142 192.5 142C226.5 146 244.5 160 278.5 184L710.5 558L714.5 188L712.5 184L832.5 278C864.5 306 880.5 340 882.5 374V428C882.5 460 874.5 486 866.5 508C872.5 496 879.505 358 881.505 364C877.505 348 874.5 484 878.5 558L880.5 724C876.5 760 862.5 792 836.5 824C810.5 854 778.5 872 744.5 880C706.5 886 672.5 878 644.5 866C622.5 856 608.5 844 588.5 826L248.5 544L244.5 872L120.5 772C84.5 742 62.5 708 54.5 670C50.5 656 52.5 644 52.5 640V258C54.5 230 62.5 206 80.5 186Z",
+  NV_FOLD_L="M52.5 454C61.5 443.5 80.5514 441.501 100.5 451.501C128.428 465.501 166.706 491 196.629 509L248.5 544.501L244.5 872.501L120.325 768.499C76.4383 730.499 54.4949 690 52.5 636V454Z",
+  NV_FOLD_R="M713.5 185L834 274C866 302 882 336 884 370C886 420 887 467 865 505C851 531 833.5 559 809.5 571C785.5 585 750 578 730 568L712 554V184L713.5 185Z",
+  NV_GLOSS="M83 183.109C121 135.109 197 132 245 160L712 558.5C732 574.5 765 581.109 795 579.109C821 577.109 856 528.5 876 480.5V555.5L881.5 724C873.5 776 853 807.109 823 835.109C791 863.109 756.5 879 716.5 881C680.5 883 649 870 623 854L249.5 546.503L244 873.003L119.5 768.5C75.5 730.5 57 691.109 55 637.109V255.109C55 223.109 65 201.109 83 183.109Z";
 function markSVG(p){
-  const L="M10 285 V70 A35 35 0 0 1 80 70 V285 Z", R="M220 18 L290 42 V235 A35 35 0 0 1 220 235 Z";
-  return `<svg class="nmark" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nuvaryn">
+  return `<svg class="nmark" viewBox="44 134 850 756" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nuvaryn">
   <defs>
-    <linearGradient id="${p}L" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2D84FF"/><stop offset="1" stop-color="#0942C2"/></linearGradient>
-    <linearGradient id="${p}R" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2A88FF"/><stop offset="1" stop-color="#86D4FF"/></linearGradient>
-    <linearGradient id="${p}D" gradientUnits="userSpaceOnUse" x1="45" y1="70" x2="255" y2="235"><stop offset="0" stop-color="#0B53DB"/><stop offset=".55" stop-color="#2A84F8"/><stop offset="1" stop-color="#6CC6FF"/></linearGradient>
-    <linearGradient id="${p}H" gradientUnits="userSpaceOnUse" x1="58" y1="52" x2="268" y2="217"><stop offset="0" stop-color="#fff" stop-opacity=".05"/><stop offset=".6" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".1"/></linearGradient>
-    <clipPath id="${p}C"><path d="${L}"/><path d="${R}"/></clipPath>
-    <filter id="${p}S" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+<linearGradient id="${p}0" x1="80.0002" y1="140" x2="880" y2="880" gradientUnits="userSpaceOnUse">
+<stop stop-color="#24B8FF"/>
+<stop offset="0.28" stop-color="#0879F5"/>
+<stop offset="0.58" stop-color="#063BD5"/>
+<stop offset="0.82" stop-color="#075BEA"/>
+<stop offset="1" stop-color="#39C9FF"/>
+</linearGradient>
+<linearGradient id="${p}1" x1="70" y1="450.001" x2="250" y2="860.001" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0736B8"/>
+<stop offset="0.55" stop-color="#0878F2"/>
+<stop offset="1" stop-color="#1BB8FF"/>
+</linearGradient>
+<linearGradient id="${p}2" x1="720" y1="190" x2="880" y2="560" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1AAEFF"/>
+<stop offset="0.55" stop-color="#0876EF"/>
+<stop offset="1" stop-color="#0637B8"/>
+</linearGradient>
+<linearGradient id="${p}3" x1="181" y1="161.105" x2="801" y2="861.105" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.14"/>
+<stop offset="0.45" stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white" stop-opacity="0.1"/>
+</linearGradient>
+    <clipPath id="${p}W"><circle class="m-w" cx="60" cy="150" r="1400"/></clipPath>
   </defs>
-  <path class="m-l" d="${L}" fill="url(#${p}L)"/>
-  <path class="m-r" d="${R}" fill="url(#${p}R)"/>
-  <g clip-path="url(#${p}C)"><line class="m-s" x1="45" y1="70" x2="255" y2="235" stroke="#041A55" stroke-opacity=".55" stroke-width="84" stroke-linecap="round" filter="url(#${p}S)"/></g>
-  <line class="m-d" x1="45" y1="70" x2="255" y2="235" stroke="url(#${p}D)" stroke-width="70" stroke-linecap="round" pathLength="1"/>
-  <line class="m-h" x1="58.6" y1="52.7" x2="268.6" y2="217.7" stroke="url(#${p}H)" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#${p}W)"><path class="m-body" d="${NV_BODY}" fill="url(#${p}0)"/></g>
+  <path class="m-fl" d="${NV_FOLD_L}" fill="url(#${p}1)"/>
+  <path class="m-fr" d="${NV_FOLD_R}" fill="url(#${p}2)"/>
+  <path class="m-g" d="${NV_GLOSS}" fill="url(#${p}3)"/>
+  <path class="m-o" d="${NV_GLOSS}" fill="none" stroke="#7FD6FF" stroke-width="6" stroke-linejoin="round" pathLength="1" opacity="0"/>
 </svg>`;
 }
 document.querySelectorAll(".nmark-slot").forEach(s=>{
@@ -901,23 +930,25 @@ function endIntro(){ intro.remove(); heroIn(); try{sessionStorage.setItem("nv-in
 if(!hasGSAP || reduce || seen){ intro.remove(); heroIn(); }
 else{
   document.body.style.overflow="hidden";
-  const m=document.getElementById("introMark");
-  gsap.set(m.querySelector(".m-l"),{transformOrigin:"50% 100%",scaleY:0});
-  gsap.set(m.querySelector(".m-r"),{transformOrigin:"50% 0%",scaleY:0});
-  gsap.set(m.querySelectorAll(".m-s,.m-h"),{opacity:0});
-  gsap.set(m.querySelector(".m-d"),{strokeDasharray:1,strokeDashoffset:1,opacity:0});
+  const m=document.getElementById("introMark"), q=c=>m.querySelector(c);
+  gsap.set(q(".m-w"),{attr:{r:0}});
+  gsap.set(q(".m-fl"),{y:260,opacity:0});
+  gsap.set(q(".m-fr"),{y:-260,opacity:0});
+  gsap.set(q(".m-g"),{opacity:0});
+  gsap.set(q(".m-o"),{strokeDasharray:1,strokeDashoffset:1,opacity:1});
   gsap.set(".intro-name .chars span",{yPercent:115});
   gsap.set(".intro-tag",{opacity:0,letterSpacing:"1.1em"});
   gsap.set(intro,{clipPath:"inset(0% 0% 0% 0%)"});
   const tl=gsap.timeline({onComplete:()=>{document.body.style.overflow="";endIntro()}});
   tl.to(".halo",{opacity:1,scale:1.1,duration:1.6,ease:"power2.out"},0)
     .to(".intro-bar",{scaleX:1,duration:3.1,ease:"power1.inOut"},0)
-    .to(m.querySelector(".m-l"),{scaleY:1,duration:.7,ease:"power3.out"},.15)
-    .set(m.querySelector(".m-d"),{opacity:1},.6)
-    .to(m.querySelector(".m-d"),{strokeDashoffset:0,duration:.75,ease:"power2.inOut"},.6)
-    .to(m.querySelector(".m-r"),{scaleY:1,duration:.7,ease:"power3.out"},1.15)
-    .to(m.querySelectorAll(".m-s,.m-h"),{opacity:1,duration:.5},1.4)
-    .from(m,{rotate:-8,scale:.85,duration:1.6,ease:"expo.out"},.1)
+    .to(q(".m-o"),{strokeDashoffset:0,duration:1.1,ease:"power2.inOut"},.1)
+    .to(q(".m-w"),{attr:{r:1400},duration:1.1,ease:"power2.inOut"},.55)
+    .to(q(".m-fl"),{y:0,opacity:1,duration:.8,ease:"expo.out"},1.05)
+    .to(q(".m-fr"),{y:0,opacity:1,duration:.8,ease:"expo.out"},1.15)
+    .to(q(".m-o"),{opacity:0,duration:.6},1.4)
+    .to(q(".m-g"),{opacity:1,duration:.6},1.5)
+    .from(m,{rotate:-10,scale:.8,duration:1.8,ease:"expo.out"},0)
     .to(".intro-name .chars span",{yPercent:0,duration:.8,ease:"expo.out",stagger:.045},1.05)
     .to(".intro-tag",{opacity:1,letterSpacing:".45em",duration:1.1,ease:"power3.out"},1.6)
     .fromTo(".intro-sweep",{left:"-30%",opacity:1},{left:"120%",duration:1,ease:"power2.inOut"},2.05)
