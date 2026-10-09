@@ -263,6 +263,23 @@ section{padding-block:clamp(70px,10vw,130px)}
 .team-wrap{margin-top:clamp(36px,5vw,56px)}
 .team-h{font-size:clamp(20px,2.4vw,26px);font-weight:800;margin-bottom:22px}
 
+
+/* products (ERP / CRM demos) */
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:860px){.prod-grid{grid-template-columns:1fr}}
+.prod{position:relative;text-decoration:none;color:inherit;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,border-color .45s}
+.prod:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--glass-line)}
+.prod .live-b{position:absolute;top:22px;right:22px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok);display:inline-flex;gap:7px;align-items:center}
+.prod .live-b::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 1.6s infinite}
+.prod-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:6px;padding-top:18px;border-top:1px solid var(--line)}
+.prod-cta small{color:var(--muted);font-family:var(--f-mono);font-size:11.5px}
+.prod .btn-primary svg{transition:transform .3s}
+.prod:hover .btn-primary svg{transform:translateX(4px)}
+.demo-link{position:absolute;right:14px;bottom:-34px;font-family:var(--f-mono);font-size:11.5px;color:var(--blue);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.demo-link:hover{text-decoration:underline}
+.crm-card .open{font-family:var(--f-mono);font-size:11px;color:var(--blue);text-decoration:none;align-self:flex-start}
+@media (max-width:560px){.demo-link{position:static;margin-top:8px}}
+
 /* projects */
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media (max-width:960px){.proj-grid{grid-template-columns:1fr 1fr}}
@@ -364,6 +381,7 @@ footer small{color:var(--muted);font-size:13px}
     <nav class="nav-links" id="links">
       <a href="#top" data-i18n="nav.home">Inicio</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
+      <a href="#productos" data-i18n="nav.products">Productos</a>
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
       <a href="#preguntas" data-i18n="nav.faq">Preguntas</a>
     </nav>
@@ -427,9 +445,10 @@ footer small{color:var(--muted);font-size:13px}
           <div class="row"><span style="font-weight:700">CT-0912 · <span data-i18n="crm.client">Metalúrgica Andes</span></span></div>
           <b>USD <span id="usd">0</span></b>
           <div class="stages"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <a class="open" href="demo/crm.html" data-i18n="hero.crmlink">Abrir la demo del CRM →</a>
         </div>
       </div>
-      <span class="example" data-i18n="dash.example">Vista de ejemplo</span>
+      <a class="demo-link" href="demo/erp.html"><span data-i18n="hero.dashlink">Vista de ejemplo · Abrir la demo del ERP</span> →</a>
     </div>
   </div>
 </section>
@@ -476,6 +495,49 @@ footer small{color:var(--muted);font-size:13px}
           <div class="sk"><span>ERP</span><span>CRM</span><span data-i18n="sk.impl">Implementación</span></div>
         </article>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTOS ============ -->
+<section id="productos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="prod.eyebrow">Productos</span>
+      <h2 data-i18n="prod.title">ERP y CRM industriales. Entrá y probalos.</h2>
+      <p data-i18n="prod.sub"></p>
+    </div>
+    <div class="prod-grid">
+      <a class="sol prod spot rv" href="demo/erp.html">
+        <span class="live-b" data-i18n="prod.badge">Demo interactiva</span>
+        <div class="tag"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l5 3V10l5 3V7l8 4v10z"/><path d="M7 17h2M12 17h2M17 17h2"/></svg></span><span data-i18n="erp.tag">ERP industrial</span></div>
+        <h3 data-i18n="erp.title">Control total de la operación</h3>
+        <p data-i18n="erp.desc"></p>
+        <ul class="mods">
+          <li><code>MRP</code><span data-i18n="erp.m1"></span></li>
+          <li><code>INV</code><span data-i18n="erp.m2"></span></li>
+          <li><code>COM</code><span data-i18n="erp.m3"></span></li>
+          <li><code>CST</code><span data-i18n="erp.m4"></span></li>
+          <li><code>FAC</code><span data-i18n="prod.erp5"></span></li>
+          <li><code>BNK</code><span data-i18n="prod.erp6"></span></li>
+        </ul>
+        <div class="prod-cta"><small data-i18n="prod.erpnote">11 módulos · datos de una metalúrgica de ejemplo</small><span class="btn btn-primary"><span data-i18n="prod.erpcta">Entrar al ERP</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="sol prod spot rv" href="demo/crm.html">
+        <span class="live-b" data-i18n="prod.badge">Demo interactiva</span>
+        <div class="tag"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5.4 6-5.4s5.4 2 6 5.4"/><path d="M16 4.5a3 3 0 0 1 0 6M18.5 14.5c1.4.8 2.3 2.6 2.5 5.5"/></svg></span><span data-i18n="crm.tag">CRM industrial</span></div>
+        <h3 data-i18n="crm.h">Ventas técnicas sin perder oportunidades</h3>
+        <p data-i18n="crm.desc"></p>
+        <ul class="mods">
+          <li><code>PIP</code><span data-i18n="prod.crm1"></span></li>
+          <li><code>LEA</code><span data-i18n="prod.crm2"></span></li>
+          <li><code>COT</code><span data-i18n="crm.m2"></span></li>
+          <li><code>AGE</code><span data-i18n="prod.crm4"></span></li>
+          <li><code>PV</code><span data-i18n="crm.m4"></span></li>
+          <li><code>MKT</code><span data-i18n="prod.crm6"></span></li>
+        </ul>
+        <div class="prod-cta"><small data-i18n="prod.crmnote">9 módulos · equipo comercial de ejemplo</small><span class="btn btn-primary"><span data-i18n="prod.crmcta">Entrar al CRM</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
     </div>
   </div>
 </section>
@@ -662,7 +724,7 @@ es:{
  "faq.eyebrow":"Preguntas","faq.title":"Preguntas frecuentes","faq.sub":"Lo que más nos consultan antes de empezar a trabajar juntos.",
  "q1.q":"¿Qué hace Nuvaryn?","q1.a":"Diseñamos e implementamos software de gestión a medida: ERP, CRM y aplicaciones web para empresas e industria.",
  "q2.q":"¿Trabajan a medida o con sistemas enlatados?","q2.a":"A medida. Partimos de tus procesos reales y el sistema se adapta a tu operación, no al revés.",
- "q3.q":"¿Puedo ver ejemplos de su trabajo?","q3.a":"Sí. En la sección Proyectos publicamos demos navegables y el código de sistemas reales que construimos.",
+ "q3.q":"¿Puedo ver ejemplos de su trabajo?","q3.a":"Sí. En Productos podés entrar a las demos completas de nuestro ERP y CRM, y en Proyectos publicamos demos navegables y el código de sistemas reales que construimos.",
  "q4.q":"¿Qué tecnologías usan?","q4.a":"Stack moderno: React, Next.js, TypeScript, Node, PostgreSQL y modelos de IA cuando el proyecto lo necesita.",
  "q5.q":"¿Cómo es el proceso de trabajo?","q5.a":"Relevamiento, diseño, desarrollo por etapas con entregas que podés probar, implementación con migración y capacitación, y soporte continuo.",
  "q6.q":"¿Cómo empiezo?","q6.a":"Escribinos desde la sección Contacto. Respondemos con una propuesta inicial y una demo pensada para tu caso.",
@@ -676,6 +738,10 @@ es:{
  "crm.title":"CRM · Pipeline","crm.stage":"Negociación","crm.client":"Metalúrgica Andes",
  marq:"Pensado para cada rubro",
  industries:["Comercio y retail","Industria y manufactura","Servicios profesionales","Salud","Educación","Logística y transporte","Gastronomía y hotelería","Construcción","Agro","Finanzas"],
+ "nav.products":"Productos","hero.dashlink":"Vista de ejemplo · Abrir la demo del ERP","hero.crmlink":"Abrir la demo del CRM →",
+ "prod.eyebrow":"Productos","prod.title":"ERP y CRM industriales. Entrá y probalos.","prod.sub":"Dos sistemas listos para adaptar a tu planta. Abrí cada demo y recorré cómo funcionan por dentro, con datos de ejemplo: cargá presupuestos, fabricá, despachá, facturá o mové oportunidades en el pipeline.",
+ "prod.badge":"Demo interactiva","prod.erp5":"Facturación, cobranzas y saldos","prod.erp6":"Bancos, RR.HH. e informes","prod.erpnote":"11 módulos · datos de una metalúrgica de ejemplo","prod.erpcta":"Entrar al ERP",
+ "prod.crm1":"Pipeline Kanban y pronósticos","prod.crm2":"Leads con puntaje y conversión","prod.crm4":"Agenda y actividades del equipo","prod.crm6":"Campañas de email","prod.crmnote":"9 módulos · equipo comercial de ejemplo","prod.crmcta":"Entrar al CRM",
  "sol.eyebrow":"Soluciones","sol.title":"Dos sistemas, una sola fuente de verdad.",
  "sol.sub":"El ERP ordena lo que pasa dentro de la planta. El CRM ordena todo lo que pasa con tus clientes. Comparten datos en tiempo real, sin planillas intermedias.",
  "erp.tag":"ERP industrial","erp.title":"Control total de la operación","erp.desc":"Desde la materia prima hasta el producto terminado, con trazabilidad por lote y costos reales por orden.",
@@ -736,7 +802,7 @@ en:{
  "faq.eyebrow":"FAQ","faq.title":"Frequently asked questions","faq.sub":"The things people ask us most before we start working together.",
  "q1.q":"What does Nuvaryn do?","q1.a":"We design and implement custom management software: ERP, CRM and web apps for businesses and industry.",
  "q2.q":"Custom-built or off-the-shelf?","q2.a":"Custom-built. We start from your real processes and the system adapts to your operation, not the other way around.",
- "q3.q":"Can I see examples of your work?","q3.a":"Yes. In the Projects section we publish live demos and the source code of real systems we built.",
+ "q3.q":"Can I see examples of your work?","q3.a":"Yes. Under Products you can step into full demos of our ERP and CRM, and in Projects we publish live demos and the source code of real systems we built.",
  "q4.q":"What technologies do you use?","q4.a":"A modern stack: React, Next.js, TypeScript, Node, PostgreSQL and AI models when the project calls for it.",
  "q5.q":"What does the process look like?","q5.a":"Discovery, design, staged development with releases you can test, rollout with data migration and training, and ongoing support.",
  "q6.q":"How do I get started?","q6.a":"Write to us from the Contact section. We reply with an initial proposal and a demo built around your case.",
@@ -750,6 +816,10 @@ en:{
  "crm.title":"CRM · Pipeline","crm.stage":"Negotiation","crm.client":"Andes Metalworks",
  marq:"Built for every sector",
  industries:["Retail & commerce","Industry & manufacturing","Professional services","Healthcare","Education","Logistics & transport","Food & hospitality","Construction","Agriculture","Finance"],
+ "nav.products":"Products","hero.dashlink":"Sample view · Open the ERP demo","hero.crmlink":"Open the CRM demo →",
+ "prod.eyebrow":"Products","prod.title":"Industrial ERP and CRM. Step inside and try them.","prod.sub":"Two systems ready to tailor to your plant. Open each demo and explore how they work inside with sample data: create quotes, manufacture, ship, invoice or move deals through the pipeline.",
+ "prod.badge":"Interactive demo","prod.erp5":"Invoicing, collections and balances","prod.erp6":"Banks, HR and reports","prod.erpnote":"11 modules · sample metalworking company","prod.erpcta":"Enter the ERP",
+ "prod.crm1":"Kanban pipeline and forecasts","prod.crm2":"Scored leads and conversion","prod.crm4":"Team calendar and activities","prod.crm6":"Email campaigns","prod.crmnote":"9 modules · sample sales team","prod.crmcta":"Enter the CRM",
  "sol.eyebrow":"Solutions","sol.title":"Two systems, one source of truth.",
  "sol.sub":"The ERP organizes everything inside the plant. The CRM organizes everything with your customers. They share data in real time, with no spreadsheets in between.",
  "erp.tag":"Industrial ERP","erp.title":"Full control of operations","erp.desc":"From raw material to finished goods, with lot traceability and actual cost per order.",
